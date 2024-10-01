@@ -1,0 +1,8 @@
+displayName: Traefik Auth Middleware
+type: middleware
+import: github.com/LevisThors/traefik-auth-plugin
+summary: 'Verify use Authorization'
+
+testData:
+  encodedHeader:
+    - "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ._XEngvIuxOcA-j7y_upRUbXli4DLToNf7HxH1XNmxSc"

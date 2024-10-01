@@ -1,0 +1,48 @@
+  syntax = "proto3";
+
+  package auth.v1;
+
+  option go_package = "auth-service/internal/infrastructure/gRPC/server/pb/auth/v1";
+
+  import "google/protobuf/any.proto"; 
+
+  service AuthService {
+    rpc CheckToken(CheckTokenRequest) returns (CheckTokenResponse);
+    rpc CreateToken(CreateTokenRequest) returns (CreateTokenResponse);
+    rpc BlacklistToken(BlacklistTokenRequest) returns (BlacklistTokenResponse);
+  }
+
+  message BlacklistTokenRequest {
+    string token = 1;
+  }
+
+  message BlacklistTokenResponse {
+  }
+
+  message CheckTokenRequest {
+    string token = 1;
+  }
+
+  message CheckTokenResponse {
+    TokenStatus status = 1;
+    map<string, google.protobuf.Any> payload = 2;
+  }
+
+  message CreateTokenRequest {
+    map<string, google.protobuf.Any> payload = 1;
+  }
+    
+  message CreateTokenResponse {
+    Token token = 1;
+  }
+
+  message Token {
+    string access_token = 1;
+    string refresh_token = 2;
+  }
+  
+  enum TokenStatus {
+    UNKNOWN = 0;
+    VALID = 1;
+    INVALID = 2;
+  }
